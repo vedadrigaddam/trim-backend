@@ -3,8 +3,8 @@
 Built using MongoDB, Express, React, Node, and TypeScript.
 
 ## Quick Start Setup
-1. Ensure local MongoDB is active at `mongodb://localhost:27017/trim`
-2. Run `npm run install-all` from the root workspace directory.
+1. Ensure local MongoDB is active at `mongodb+srv://stag:veda123@satg.bauwhnj.mongodb.net/trimDB`
+2. Run `npm install` from the root workspace directory.
 3. Run `npm run dev` to launch both backend and frontend layers concurrently.
 
 ## Technical Design Decisions & Defenses
