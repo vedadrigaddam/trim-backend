@@ -16,7 +16,7 @@ export const createShortLink = async (req: Request, res: Response, next: NextFun
     } else { shortCode = nanoid(6); }
     
     const newLink = await Link.create({ longUrl, shortCode });
-    res.status(201).json({ longUrl: newLink.longUrl, shortCode: newLink.shortCode, shortUrl: "http://localhost:5000/" + newLink.shortCode });
+    res.status(201).json({ longUrl: newLink.longUrl, shortCode: newLink.shortCode, shortUrl: req.protocol + "://" + req.get("host") + "/" + newLink.shortCode });
   } catch (error) { next(error); }
 };
 
@@ -34,7 +34,7 @@ export const handleRedirect = async (req: Request, res: Response, next: NextFunc
 export const getAllLinks = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   try {
     const links = await Link.find().sort({ createdAt: -1 });
-    res.json(links.map(l => ({ id: l._id, longUrl: l.longUrl, shortCode: l.shortCode, shortUrl: "http://localhost:5000/" + l.shortCode, clicksCount: l.clicksCount })));
+    res.json(links.map(l => ({ id: l._id, longUrl: l.longUrl, shortCode: l.shortCode, shortUrl: req.protocol + "://" + req.get("host") + "/" + l.shortCode, clicksCount: l.clicksCount })));
   } catch (error) { next(error); }
 };
 
